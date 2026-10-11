@@ -1,8 +1,9 @@
-\begin{table}[t]
+\begin{table}[!htbp]
 \centering
+\footnotesize
 \caption{Agreement of recomputed IRI with the P79 profilometer's reported IRI (100 m, mean of both wheel paths; LiRA-CD).}
 \label{tab:iri_validation}
-\resizebox{\columnwidth}{!}{%
+\begin{adjustbox}{max width=\columnwidth}
 \begin{tabular}{lrrrrrrrrr}
 \toprule
 \textbf{comparison} & \textbf{scope} & \textbf{files} & \textbf{n} & \textbf{pearson} & \textbf{bias} & \textbf{mae} & \textbf{mape} & \textbf{loa\_low} & \textbf{loa\_high} \\
@@ -33,5 +34,6 @@ ARAN9000 vs P79 (profile) & all files & 8 & 1646 & 0.677 & 0.849 & 0.982 & 31.26
 ARAN9000 vs P79 (profile) & urban & 4 & 894 & 0.544 & 1.459 & 1.689 & 46.561 & -5.853 & 8.771 \\
 ARAN9000 vs P79 (profile) & motorway & 4 & 752 & 0.954 & 0.124 & 0.143 & 13.087 & -0.12 & 0.368 \\
 \bottomrule
-\end{tabular}}
+\end{tabular}
+\end{adjustbox}
 \end{table}

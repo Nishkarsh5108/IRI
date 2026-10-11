@@ -48,7 +48,7 @@ def t_real():
               ("Learned on simulation only (zero-shot)", [("V0 LightGBM, measured profiles", "Sim V0 LightGBM (zero-shot)"),
                                                           ("V10 LightGBM, measured + synthetic", "Sim V10 LightGBM (zero-shot)")])]
     L = [r"\begin{table*}[t]", r"\centering",
-         r"\caption{Real cars (LiRA-CD), leave-one-route-out, 100\,m segments. Within-route metrics and partial $\rho$ as defined in Section~\ref{sec:method}. $\Delta$MAE: paired difference to the real-trained LightGBM with a 95\,\% cluster-bootstrap interval over 5\,km blocks (40 clusters); ``routes'': number of held-out routes on which the estimator is better. Neural nets: 5-seed ensembles.}",
+         r"\caption{Real cars (LiRA-CD), leave-one-route-out, 100\,m segments. Within-route metrics: mean of the four held-out routes (\SecMethodRef); partial $\rho$: Spearman correlation with IRI given segment mean speed. $\Delta$MAE: paired difference to the real-trained LightGBM with a 95\,\% cluster-bootstrap interval over 5\,km blocks (40 clusters); ``routes'': number of held-out routes on which the estimator is better. Neural nets: 5-seed ensembles.}",
          r"\label{tab:real}", r"\setlength{\tabcolsep}{4pt}", r"\footnotesize",
          r"\begin{tabular}{@{}lcccccrc@{}}", r"\toprule",
          r"Estimator & \multicolumn{3}{c}{Within route} & \multicolumn{2}{c}{Pooled} & $\Delta$MAE vs M3 & Routes \\",
@@ -65,11 +65,11 @@ def t_real():
     write("v2_real.tex", "\n".join(L) + "\n")
 
 
-VLAB = {"V0": "V0 mixture (reference, pre-specified)", "V1": "V1 telematics-like, rigid", "V7": "V7 telematics-like + holder",
+VLAB = {"V0": "V0 mixture (reference)", "V1": "V1 telematics-like, rigid", "V7": "V7 telematics-like + holder",
         "V8": "V8 phone-like, rigid", "V2": "V2 phone-like + holder", "V3": "V3 ideal sensor", "V5": "V5 telematics matched to LiRA-CD",
         "V6": "V6 matched telematics + phone-like", "V4": "V4 one mid-range vehicle", "V10": "V10 measured + synthetic profiles",
         "V9": "V9 synthetic profiles only", "V7full": "V7, all passes", "V8full": "V8, all passes",
-        "B_corr": "BeamNG corpus, earlier labels", "B_raw": "BeamNG corpus, raw-profile labels", "REAL": "trained on real cars (M3)"}
+        "B_corr": "game engine, smoothed labels", "B_raw": "game engine, unsmoothed labels", "REAL": "trained on real cars (M3)"}
 
 
 def t_variants(model="GBM", name="v2_variants.tex", main=True):
@@ -81,9 +81,9 @@ def t_variants(model="GBM", name="v2_variants.tex", main=True):
            "Bias by road class; within-route $\\rho$; scale $b$: slope of log prediction on log IRI with route fixed effects "
            "(real-trained: \\vvRealScaleB); speed elasticity of the estimate on a fixed road (Section~\\ref{sec:res_speed}); then MAE after "
            "estimating only a level offset from $k$\\,km of real data of the training routes (mean over 20 draws; 2.5--97.5\\,\\% range in brackets for 5\\,km). "
-           "Diagnostic variants (class E) except V0, which was fixed before any test result.") if main else \
+           "V0 was fixed before any test result; the other variants are exploratory.") if main else \
           (f"All simulator variants ({'LightGBM' if model == 'GBM' else 'vibration index with the speed exponent fitted in simulation'}), including the full V7/V8 sets "
-           "(all passes instead of a random half) and the BeamNG corpus with the earlier (corrected) and raw-profile labels. Columns as in Table~\\ref{M-tab:variants}: zero-shot MAE and bias, "
+           "(all passes instead of a random half) and the game-engine corpus with smoothed and unsmoothed labels (Section~\\ref{sec:s_game}). Columns as in \\TabVariants: zero-shot MAE and bias, "
            "within-route Spearman, scale $b$, pooled within-segment speed elasticity, and MAE after a level offset from $k$\\,km of real data of the training routes.")
     env = "table*"
     L = [rf"\begin{{{env}}}[t]", r"\centering", rf"\caption{{{cap}}}", rf"\label{{tab:variants{'' if main else ('_s_' + model.lower())}}}",
@@ -132,7 +132,7 @@ def t_general():
     RB = pd.read_csv(os.path.join(RESULTS, "sim", "robustness.csv"))
     RB = RB[RB.model == "M3 LightGBM"].set_index(["family", "level"])
     L = [r"\begin{table*}[t]", r"\centering",
-         r"\caption{Controlled simulation (class S; no real data). Left: number of training vehicles at a fixed 1,200 training passes (held-out synthetic routes, 30 unseen and up to 30 seen vehicles; LightGBM). $\Delta$: unseen minus seen MAE relative to seen, with the upper 95\,\% bound from a segment and from a route bootstrap; criterion of our earlier study: upper bound $\le$10\,\%. Right: one sensor property changed at test time (LightGBM trained on synthetic profiles with the sensor mixture, tested on 12 held-out synthetic routes driven by 6 unseen vehicles with the telematics-like sensor; MAE and bias in m/km).}",
+         r"\caption{Controlled simulation (no real data). Left: number of training vehicles at a fixed 1,200 training passes (held-out synthetic routes, 30 unseen and up to 30 seen vehicles; LightGBM). $\Delta$: unseen minus seen MAE relative to seen, with the upper 95\,\% bound from a segment and from a route bootstrap; criterion: upper bound $\le$10\,\%. Right: one sensor property changed at test time (LightGBM trained on synthetic profiles with the sensor mixture, tested on 12 held-out synthetic routes driven by 6 unseen vehicles with the telematics-like sensor; MAE and bias in m/km).}",
          r"\label{tab:general}", r"\setlength{\tabcolsep}{3pt}", r"\footnotesize",
          r"\begin{tabular}[t]{@{}rccccc@{}}", r"\toprule",
          r"Vehicles & Seen & Unseen & $\Delta$ & Upper bound (\%) & Criterion met \\",
@@ -287,7 +287,7 @@ def t_value_variants():
         r = q.iloc[0]
         return rf"{f2(r['diff'], 2, True)} ({int(r.n_better)})"
     L = [r"\begin{table*}[!htbp]", r"\centering",
-         r"\caption{Every measured-profile simulator variant against LightGBM trained on the real passes over the same $k$\,km (20 paired draws of training-route blocks). Entries: mean difference in pooled segment MAE, simulation arm minus real-only (m/km; negative = simulation better), and in parentheses the number of the 20 draws in which the simulation arm was better. ``Same $k$\,km'': trained on simulated passes over the profiles of the same blocks only (equal profile budget; V1--V8 added after the V0 result was known, class E). ``All profiles + level'': trained on all training-route profiles, level offset from the $k$\,km of real passes. ``+ affine'': affine calibration instead of the offset.}",
+         r"\caption{Every measured-profile simulator variant against LightGBM trained on the real passes over the same $k$\,km (20 paired draws of training-route blocks). Entries: mean difference in pooled segment MAE, simulation arm minus real-only (m/km; negative = simulation better), and in parentheses the number of the 20 draws in which the simulation arm was better. ``Same $k$\,km'': trained on simulated passes over the profiles of the same blocks only (equal profile budget). ``All profiles + level'': trained on all training-route profiles, level offset from the $k$\,km of real passes. ``+ affine'': affine calibration instead of the offset.}",
          r"\label{tab:s_value_variants}", r"\setlength{\tabcolsep}{3pt}", r"\footnotesize", r"\begin{tabular}{@{}lccccccccc@{}}", r"\toprule",
          r"& \multicolumn{3}{c}{Same $k$\,km of profiles} & \multicolumn{4}{c}{All profiles + level from $k$\,km} & \multicolumn{2}{c}{+ affine} \\ \cmidrule(lr){2-4}\cmidrule(lr){5-8}\cmidrule(lr){9-10}",
          r"Variant & 2\,km & 5\,km & 20\,km & 1\,km & 5\,km & 10\,km & 20\,km & 5\,km & 20\,km \\", r"\midrule"]

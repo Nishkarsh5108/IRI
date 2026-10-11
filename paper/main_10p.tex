@@ -1,0 +1,65 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,booktabs,array,url,xcolor,tikz}
+\usetikzlibrary{positioning,calc,arrows.meta}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\externaldocument[S-]{supplementary_10p}
+\graphicspath{{../figures/}}
+% 10-page variant of main.tex (same study, title and abstract; more detail in the main text).
+% every experimental number is a macro generated from the result files (make_numbers.py, make_numbers_v2.py, make_numbers_v3.py)
+\input{numbers.tex}
+\input{numbers_v2.tex}
+\input{numbers_v3.tex}
+% cross-references used inside generated table captions (defined differently in the supplement)
+\newcommand{\SecMethodRef}{Section~\ref{sec:method}}
+\newcommand{\TabVariantsGbm}{Table~\ref{S-tab:variants_s_gbm}}
+
+\begin{document}
+\raggedbottom
+\makeatletter\@secpenalty=0\makeatother % fill columns before section headings
+
+\title{Sim-to-Real Transferability and Calibration Requirements for Connected-Vehicle Road Roughness Estimation}
+
+\author{
+\IEEEauthorblockN{Nishkarsh Singhal}
+\IEEEauthorblockA{\textit{Department of Electronics and Communication Engineering} \\
+\textit{Faculty of Technology, University of Delhi}\\
+New Delhi, India}
+\and
+\IEEEauthorblockN{Geetanjali Bhola}
+\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+\textit{Faculty of Technology, University of Delhi}\\
+New Delhi, India}
+}
+
+\maketitle
+
+\begin{abstract}
+Connected cars could monitor road roughness continuously, but mapping their vibration to the International Roughness Index (IRI) requires paired drives over profiled roads, and vehicle simulation over existing profiles can generate such pairs. We quantify what transfers from simulation to a production car on public profilometer-referenced data (LiRA-CD, \liraKm\,km), testing on held-out routes with spatial-block bootstrap intervals. A randomised half-car simulator driven over measured profiles trains gradient boosting that ranks road segments within routes about as well as real training (Spearman \vvRhoMin--\vvRhoMax{} vs \vrGbmRhoWithin{} under nine sensor and vehicle models), yet an untrained, speed-normalised vibration RMS ranks within \rpAbsMax{} of both on every route: ranking is not the bottleneck. The bottleneck is the absolute level: the zero-shot bias ranges from \vvBiasMin{} to \vvBiasMax\,m/km and depends on how well the simulated sensor path reproduces the car's vibration above 10\,Hz and on the simulated vehicle population. Five kilometres of paired drives resolve it. Simulation with a level offset (pooled MAE \pcCalMaeFiveMin--\pcCalMaeFiveMax\,m/km) or joint training (\poMaeFiveMin--\poMaeFiveMax\,m/km) beats training on those drives alone (\vbRealOnlyFive\,m/km) for every variant, even with one pass per segment, and the reference simulator with a 5\,km offset (\vvVzeroCalFive\,m/km) outperforms 20\,km of real drives alone (\vbRealOnlyTwenty\,m/km). Game-engine data, whose ray-cast road elevation carries \gePsdUrbanShortMin--\gePsdUrbanShortMax{} times the short-wavelength power of measured urban roads, do not transfer.
+\end{abstract}
+
+\begin{IEEEkeywords}
+International Roughness Index, connected vehicles, vehicle vibration, sim-to-real transfer, calibration, road profile.
+\end{IEEEkeywords}
+
+\input{sections_10p/intro}
+\input{fig_pipeline}
+\input{sections_10p/related}
+\input{sections_10p/data}
+\input{sections_10p/method}
+\input{sections_10p/results}
+\input{sections_10p/gameengine}
+\input{sections_10p/discussion}
+
+\section{Conclusion}
+\label{sec:conclusion}
+Simulated drives over measured road profiles teach an estimator how a production car's vibration ranks road roughness, but not its absolute level, which depends on the simulated sensor path above 10\,Hz and on the simulated vehicle population; an untrained vibration statistic ranks the segments nearly as well, so the informative test is the level.
+About 5\,km of paired drives with one pass per segment fix the level: combined with simulation over all profiled roads, they beat real-only training on the same drives for every simulator variant, the reference simulator with a level offset beats 20\,km of real drives alone, and joint training keeps an advantage for every variant up to 20\,km, whereas a level offset loses it for the variants with the largest vibration deficit at 10--15\,Hz.
+Game-engine road meshes cannot replace measured profiles.
+Whether these requirements hold for other cars and road networks needs new paired data, ideally with the simulator fixed in advance.
+
+\input{references_cited_10p.tex}
+
+\end{document}

@@ -14,8 +14,8 @@
 \node[real, minimum width=40mm, right=10mm of p79] (car) {Real cars (LiRA-CD): telematics\\accelerometer, CAN speed, GPS};
 \node[real, minimum width=40mm, below=of car] (mm) {GPS map matching\\to the P79 chainage};
 % simulation (right column)
-\node[sim, minimum width=46mm, right=10mm of car] (prof) {Profiles of the training routes only:\\measured P79 or ISO-8608-type synthetic};
-\node[sim, minimum width=46mm, below=of prof] (veh) {Half-car, random vehicles, sensor model;\\V0 fixed in advance, V1--V10 vary one part};
+\node[sim, minimum width=46mm, right=10mm of car] (prof) {Profiles of the training routes only:\\measured P79 or synthetic ISO 8608};
+\node[sim, minimum width=46mm, below=of prof] (veh) {Half-car, random vehicles, sensor model;\\reference V0, variants V1--V9};
 % shared part: anchored to the right of the left (label) column so that the wide boxes cannot overlap it
 \coordinate (mid) at ($(mm.south)!0.5!(veh.south)$);
 \coordinate (sharedNW) at (lab100.east |- mid);

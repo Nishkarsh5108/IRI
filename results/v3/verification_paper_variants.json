@@ -1,0 +1,230 @@
+{
+ "n_checks": 39,
+ "n_failed": 0,
+ "checks": [
+  {
+   "check": "main.pdf: clean log and no '??'",
+   "passed": true,
+   "pages": 6,
+   "log_problems": []
+  },
+  {
+   "check": "main.pdf within 6 pages",
+   "passed": true,
+   "pages": 6
+  },
+  {
+   "check": "main_10p.pdf: clean log and no '??'",
+   "passed": true,
+   "pages": 10,
+   "log_problems": []
+  },
+  {
+   "check": "main_10p.pdf within 10 pages",
+   "passed": true,
+   "pages": 10
+  },
+  {
+   "check": "supplementary.pdf: clean log and no '??'",
+   "passed": true,
+   "pages": 15,
+   "log_problems": []
+  },
+  {
+   "check": "supplementary_10p.pdf: clean log and no '??'",
+   "passed": true,
+   "pages": 14,
+   "log_problems": []
+  },
+  {
+   "check": "main.pdf fills exactly 6 pages",
+   "passed": true
+  },
+  {
+   "check": "main.pdf: no wording about earlier drafts, reviews or protocol bookkeeping",
+   "passed": true,
+   "hits": {}
+  },
+  {
+   "check": "main_10p.pdf: no wording about earlier drafts, reviews or protocol bookkeeping",
+   "passed": true,
+   "hits": {}
+  },
+  {
+   "check": "supplementary.pdf: no wording about earlier drafts, reviews or protocol bookkeeping",
+   "passed": true,
+   "hits": {}
+  },
+  {
+   "check": "supplementary_10p.pdf: no wording about earlier drafts, reviews or protocol bookkeeping",
+   "passed": true,
+   "hits": {}
+  },
+  {
+   "check": "no macro value changed relative to the 10-page checkpoint (only additions)",
+   "passed": true,
+   "changed": [],
+   "added": [
+    "geIriFresh",
+    "geIriLogged",
+    "geIriSmoothed",
+    "geKm",
+    "gePsdMotorwayLong",
+    "gePsdMotorwayShortMax",
+    "gePsdMotorwayShortMin",
+    "gePsdUrbanLong",
+    "gePsdUrbanShortMax",
+    "gePsdUrbanShortMin",
+    "geRepeatMax",
+    "geRepeatMean",
+    "geRepeatMin",
+    "geTrips"
+   ]
+  },
+  {
+   "check": "every number macro used in either variant, the supplement and the included tables is defined",
+   "passed": true,
+   "undefined": [],
+   "n_used": 330
+  },
+  {
+   "check": "stated: ranking bound names its exceptions",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: speed-CV caveat",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: speed-CV caveat (10 p)",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: class level = mean of its two routes",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: class level = mean of its two routes (10 p)",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: configuration selection only for whole-route real LightGBM",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: release statement",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: Nitsche details attributed to Bajic et al.",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: Nitsche details attributed to Bajic et al. (10 p)",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: exploratory status stated",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: plans not registered publicly",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: computations before the plans disclosed",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: analyses added after results were known disclosed",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "stated: re-run of the robustness experiment disclosed",
+   "passed": true,
+   "missing": []
+  },
+  {
+   "check": "game-engine macros re-derived from the per-trip results",
+   "passed": true,
+   "printed": [
+    "54",
+    "69",
+    "12.5",
+    "15.6",
+    "4.5"
+   ]
+  },
+  {
+   "check": "logged-elevation IRI agrees with the raw-label mean of the BeamNG dataset",
+   "passed": true,
+   "diagnostic": 12.499,
+   "labels": "12.50"
+  },
+  {
+   "check": "removing repeated readings does not lower the IRI (claim in both variants)",
+   "passed": true
+  },
+  {
+   "check": "game-engine power ratios rise toward short wavelengths and match the macros",
+   "passed": true,
+   "long": 11.7,
+   "short": [
+    54.0,
+    42.1,
+    46.6
+   ]
+  },
+  {
+   "check": "main.pdf newer than its sources, tables and macros",
+   "passed": true
+  },
+  {
+   "check": "main_10p.pdf newer than its sources, tables and macros",
+   "passed": true
+  },
+  {
+   "check": "supplementary.pdf newer than its sources, tables and macros",
+   "passed": true
+  },
+  {
+   "check": "supplementary_10p.pdf newer than its sources, tables and macros",
+   "passed": true
+  },
+  {
+   "check": "PROTOCOL_V3.md unchanged",
+   "passed": true
+  },
+  {
+   "check": "checkpoint v2_2026-10-03 matches its manifest",
+   "passed": true,
+   "files": 172,
+   "mismatched": []
+  },
+  {
+   "check": "checkpoint v3_2026-10-11 matches its manifest",
+   "passed": true,
+   "files": 170,
+   "mismatched": []
+  },
+  {
+   "check": "checkpoint v3_10p_2026-10-12 matches its manifest",
+   "passed": true,
+   "files": 92,
+   "mismatched": []
+  }
+ ]
+}

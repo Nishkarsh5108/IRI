@@ -178,9 +178,29 @@ def fig_value():
     fig.tight_layout(rect=[0, 0.16, 1, 1]); PL.savefig(fig, os.path.join(FIGURES, "v3_value"))
 
 
+def fig_profile_psd():
+    """Supplement: displacement PSD of the measured P79 profiles and of the game-engine ray-cast elevation
+    (results/v3/profile_psd.csv from experiments/v3/beamng_profile_artifacts.py)."""
+    P = r3("profile_psd.csv")
+    style = {"P79, motorway": (C_REAL, "--", "measured (P79), motorway"), "P79, urban": (C_REAL, "-", "measured (P79), urban"),
+             "game engine, logged": (C_SIM, "-", "game engine, logged elevation"),
+             "game engine, fresh readings": (INK2, ":", "game engine, repeated readings removed")}
+    fig, a = plt.subplots(1, 1, figsize=(3.5, 2.5))
+    for src, (col, ls, lab) in style.items():
+        g = P[(P.source == src) & (P.n_cyc_per_m > 0)].sort_values("n_cyc_per_m")
+        g = g[(1 / g.n_cyc_per_m >= 0.55) & (1 / g.n_cyc_per_m <= 50)]      # avoid the Nyquist edge (0.5 m)
+        a.plot(1 / g.n_cyc_per_m, g.psd_m2_per_cyc_m, color=col, ls=ls, lw=1.2, label=lab)
+    a.set_xscale("log"); a.set_yscale("log"); a.invert_xaxis()
+    ticks = [50, 20, 10, 5, 2, 1, 0.55]
+    a.set_xticks(ticks); a.set_xticklabels(["50", "20", "10", "5", "2", "1", "0.55"]); a.minorticks_off()
+    a.set_xlabel("wavelength (m)"); a.set_ylabel("displacement PSD (m$^2$/(cycle/m))")
+    a.legend(fontsize=5.8, frameon=False, loc="lower left")
+    fig.tight_layout(); PL.savefig(fig, os.path.join(FIGURES, "v3s_profile_psd"))
+
+
 def main():
-    fig_variants(); fig_spectra(); fig_value()
-    print("written:", sorted(f for f in os.listdir(FIGURES) if f.startswith("v3_")))
+    fig_variants(); fig_spectra(); fig_value(); fig_profile_psd()
+    print("written:", sorted(f for f in os.listdir(FIGURES) if f.startswith("v3")))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,23 @@
+\section{Introduction}
+\label{sec:intro}
+The International Roughness Index (IRI) is the standard summary of longitudinal road roughness~\cite{sayers1986tp45,astm_e1926}.
+It is computed from a longitudinal profile measured by a laser profilometer, an instrument too costly to survey minor roads often.
+Production cars that already carry accelerometers could monitor roughness continuously~\cite{sattar2018review,sang2024iri,levenberg2021lira}, but their vibration depends on the vehicle, the sensor mounting and the speed.
+The mapping from vibration to IRI must therefore be established for each car type from paired data, drives of that car over road sections whose profile has been measured~\cite{sayers1986tp46}, and collecting such drives is the expensive step.
+
+Vehicle simulation offers another source of pairs.
+Driving a vehicle model over profiles that road agencies already survey yields vibration with exact IRI labels, at any speed and for many vehicle parameter sets.
+Estimators trained this way have been validated in simulation~\cite{jeong2020cnn,rcnn2023sim} and tested with real vehicles for the weighted longitudinal profile~\cite{nitsche2014wlp}, for profile reconstruction~\cite{ngwangwa2014exp} and for roughness classes~\cite{speedadaptive2025}; calibrated vehicle models invert real car vibration into road profiles~\cite{skar2024inversion,agebjar2025fusion} or set an IRI--vibration relation by simulation~\cite{wu2023calib}.
+What has not been shown, for continuous IRI from a production car on held-out roads of public data, is which parts of a simulation-trained estimator transfer, which simulator choices set its accuracy, and how much paired real data must accompany the simulation.
+
+We answer these questions on LiRA-CD~\cite{skar2023lira}, public data of one car model on four routes with profilometer references (Fig.~\ref{fig:pipeline}).
+Estimators trained on real drives are compared with the same estimators trained only on simulated drives over the measured profiles of the other routes.
+We vary the sensor and vehicle model of the simulator, combine it with $k$\,km of profiled road with paired drives in three ways, compare simulated and real drives at equal profile budget, in their speed dependence on the same real segments and in their vibration spectra, and benchmark a game-engine corpus against simulation over measured profiles.
+Our contributions are:
+\begin{itemize}
+\item We show that ranking segments within a route is not the bottleneck: an untrained, speed-normalised vibration RMS ranks them within \rpAbsMax{} in Spearman correlation of the best trained estimators, real or simulated (Section~\ref{sec:res_zero}).
+\item We show that the absolute level is the bottleneck: it depends on how well the simulated sensor path reproduces the car's vibration above 10\,Hz, tested by a band-limited retraining, and on the simulated vehicle population (Sections~\ref{sec:res_zero} and~\ref{sec:res_mech}).
+\item We quantify the calibration requirement at equal profile budget and with a level offset, an affine map or joint training: about 5\,km of paired drives, with one pass per segment, fix the level, and joint training stays better than real-only training up to 20\,km for every simulator variant (Section~\ref{sec:res_value}).
+\item We measure the speed dependence of real- and simulation-trained estimators on fixed real roads (Section~\ref{sec:res_speed}) and show that simulation must be driven by measured profiles: game-engine road meshes yield an implausible IRI ground truth and do not transfer (Section~\ref{sec:gameengine}).
+\end{itemize}
+Code, configurations and predictions will be released with the published version.

@@ -82,7 +82,7 @@ def main():
                   "??" not in text and "undefined" not in log and "Overfull" not in log, pages=len(r.pages))
             # ranges are typeset with an en dash; hyphens (dates such as 2026-10-10) are not ranges
             check(f"{f}.pdf has no equal-ended ranges such as '20-20' (en dash)",
-                  re.search(r"\b(\d+)–\1\b(?!\.\d)", text) is None)
+                  re.search(r"(?<![\d.])(\d+)–\1\b(?!\.\d)", text) is None)   # not inside decimals (0.5-5)
     except ImportError:
         check("pypdf available for the PDF checks", False)
 

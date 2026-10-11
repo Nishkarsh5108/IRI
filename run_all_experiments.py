@@ -96,15 +96,22 @@ STEPS = [
     ("v3_speed_robustness", PY, ["experiments/v3/speed_robustness.py"], R("results", "v3", "speed_robustness.csv")),
     ("v3_nosim_index", PY, ["experiments/v3/nosim_index.py"], R("results", "v3", "nosim_index.csv")),
     ("v3_pass_density", PY, ["experiments/v3/pass_density.py"], R("results", "v3", "pass_density.csv")),
+    # game-engine elevation diagnostic, added for the 6- and 10-page papers (2026-10-12; not in PROTOCOL_V3)
+    ("v3_beamng_profile", PY, ["experiments/v3/beamng_profile_artifacts.py"], R("results", "v3", "beamng_profile_artifacts.csv")),
     ("v3_numbers", PY, ["make_numbers_v3.py"], None),
     ("v3_tables", PY, ["make_tables_v3.py"], None),
     ("v3_figures", PY, ["make_figures_v3.py"], None),
     ("v3_final_results", PY, ["make_final_results_v3.py"], None),
+    # two variants of the paper: main.tex (6 pages) and main_10p.tex (10 pages), each with its own supplement build
     ("bib_cited", PY, ["paper/make_bib_cited.py"], None),
+    ("bib_cited_10p", PY, ["paper/make_bib_cited.py", "main_10p.tex", "references_cited_10p.tex"], None),
     # the supplement and the main paper cross-reference each other (xr-hyper): compile in turn
     ("paper", "latex", ["supplementary.tex", "main.tex"], None),
+    ("paper_10p", "latex", ["supplementary_10p.tex", "main_10p.tex"], None),
     ("v3_verify", PY, ["evaluation/verify_v3.py"], None),          # independent checks of the v3 artifacts
-    ("final_verify", PY, ["evaluation/verify_final.py"], None),    # checks of the final-audit corrections
+    ("paper_verify", PY, ["evaluation/verify_paper_variants.py"], None),   # checks of the 6- and 10-page papers
+    # evaluation/verify_final.py checks the wording of the audited 10-page manuscript of 2026-10-11 (kept in
+    # checkpoints/v3_10p_2026-10-12); it no longer applies to the rewritten papers and is not run here
     ("compress_predictions", PY, ["results/compress_predictions.py"], None),
 ]
 

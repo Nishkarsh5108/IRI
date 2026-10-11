@@ -249,3 +249,75 @@ No result, claim, number value, table body or figure image changed. Details in `
   list and Conclusion tightened; LightGBM reference shortened to "et al." (more than six authors, as for every other
   entry; `references/build_bib.py`, `references/references.tex`).
 - `evaluation/verify_final.py`: expected phrasings updated; new check "main paper within 10 pages" (15 checks).
+
+## 2026-10-12 (standalone 6-page and 10-page variants)
+
+No experiment of the study was rerun, and no existing number macro changed. This was checked against
+`checkpoints/v3_10p_2026-10-12/`, a copy of the 10-page manuscript (git 7a8cc9d) taken before this conversion: 92 files,
+with `MANIFEST.sha256` and `CHECKPOINT.md`.
+
+- **Two variants of one standalone paper.** Same title ("Sim-to-Real Transferability and Calibration Requirements for
+  Connected-Vehicle Road Roughness Estimation") and same abstract. Neither mentions earlier drafts, review rounds,
+  protocol files or evidence classes. Both keep the plain statements of what was fixed in advance and what is
+  exploratory, the release statement and every final-audit correction.
+  - `paper/main.tex`: 6 pages, sections in `paper/sections/`. `related.tex` and `data.tex` were merged into the intro and
+    method and deleted. Its supplement `paper/supplementary.tex` has 15 pages.
+  - `paper/main_10p.tex`: 10 pages, sections in `paper/sections_10p/`, references `references_cited_10p.tex`. Its
+    supplement `paper/supplementary_10p.tex` (14 pages) sets `\tenpage` and `\mainname` and inputs `supplementary.tex`,
+    which then leaves out the tables and figures that the 10-page paper shows itself.
+- **New exploratory diagnostic** (not in PROTOCOL_V3; Supplement S1 says it was added while the manuscript was
+  prepared). `experiments/v3/beamng_profile_artifacts.py` writes `results/v3/beamng_profile_artifacts.csv`,
+  `profile_psd.csv` and `beamng_profile_summary.json`. It covers, per trip:
+  - repeated elevation readings while moving;
+  - 100 m IRI of the logged elevation, of the elevation with repeats removed, and of the mesh-smoothed elevation;
+  - Welch displacement PSD of the game-engine and P79 profiles.
+
+  It feeds 14 new macros `ge*` (`make_numbers_v3.py`), the figure `figures/v3s_profile_psd.pdf`
+  (`make_figures_v3.py`) and Table I of the 6-page paper, `tables/v3_bench.tex` (`make_tables_v3.py`).
+- **Game-engine wording follows the measurements.** The brief's wording was not adopted, because neither phrase is
+  measured: "high-frequency geometric artifacts", and a level bias "caused by sensor mounting resonance". The text
+  states what the diagnostic shows. The excess displacement power rises toward short wavelengths. It lies in the
+  elevation values, not in the stale sampling. The physical source of the car's extra vibration above 10 Hz is left
+  unidentified.
+- **Removed from the supplement**, but kept in the repository and the checkpoints:
+  - protocol history and evidence-class definitions, replaced by S1 "Analysis plan and deviations" in plain language;
+  - the lists of corrected statements of earlier drafts;
+  - the PVS material, `tableS_beamng`, `table5_generalisation` and the BeamNG protocol figure.
+- **Generated captions neutralised** (`make_tables_v2.py`, `make_tables_v3.py`):
+  - removed: evidence classes, "criterion of our earlier study" and "pre-specified";
+  - the BeamNG rows are now "game engine, smoothed/unsmoothed labels";
+  - caption cross-references go through `\TabVariants`, `\TabReal`, `\TabVariantsGbm` and `\SecMethodRef`, defined per
+    document.
+- **Fig. S1b panel title** changed from "Legacy label pipeline" to "Mesh-smoothing label code" (`common/plotting.py`).
+  Rerunning `evaluation/iri_unit_test.py` reproduced its CSV and JSON outputs byte for byte. It also refreshed the stale
+  table wrapper of `tables/iri_reference_validation.tex`; the values are the same and the paper does not use the table.
+- **Corrections from the final read-through:**
+  - 6-page Sec. III-A said the 0.39 m/km within-route MAE was "19 % of the mean urban and 12 % of the mean motorway
+    IRI". The percentages are the per-class MAE relative to the class mean, and the text now says so.
+  - Supplement S1 had dropped three disclosures of the audited text, now restored:
+    - several v3 analyses had been computed independently on the same data before the plans were written, so neither
+      they nor the two hypotheses are confirmatory;
+    - six v2 analyses (addenda E5-E10 of `PROTOCOL_V2.md`) were added after some results were known; the 10-page
+      checkpoint named only four of them;
+    - the robustness experiment was re-run with common random numbers.
+
+    The reproduction statement was narrowed to what was checked: joint training for V0, V1, V3 and V5 per fold and
+    draw, and the band-limited retraining, which is identical in all 27 rows.
+  - 6-page intro: Ngwangwa et al. trained on *slightly modified* measured profiles.
+  - Conclusions: "ideally collected after freezing the simulator" became "ideally with the simulator fixed in
+    advance".
+  - The supplement's 10 % criterion sentence was reworded.
+- **`evaluation/verify_v3.py`**: the equal-range regex no longer matches dates or decimal ranges. All 25 checks pass.
+- **New `evaluation/verify_paper_variants.py`**: 39 checks, written to `results/v3/verification_paper_variants.json`.
+  - page limits: main exactly 6 pages, main_10p at most 10;
+  - clean logs and no "??" in the four PDFs;
+  - no wording about earlier drafts, reviews or protocol bookkeeping;
+  - no macro value changed relative to the 10-page checkpoint, and every macro used is defined;
+  - the final-audit corrections and the S1 disclosures are still stated;
+  - the game-engine macros are re-derived;
+  - PDFs are newer than their sources;
+  - the protocol hash and three checkpoint manifests are intact.
+- **Pipeline** (`run_all_experiments.py`):
+  - new steps `v3_beamng_profile`, `bib_cited_10p`, `paper_10p` and `paper_verify`;
+  - `final_verify` removed, because `evaluation/verify_final.py` checks phrasings of the audited 10-page manuscript,
+    several of which were reworded. Its last result stays in `results/v3/verification_final.json`.

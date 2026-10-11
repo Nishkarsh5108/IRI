@@ -1,0 +1,41 @@
+hopper automation_test_track trip_1 {'km': 9.4, 'repeat_pct': np.float64(54.15), 'repeat_short_pct': np.float64(44.51), 'repeat_long_pct': np.float64(9.64), 'iri_logged': 11.73, 'iri_fresh': 14.35, 'iri_smoothed': 4.07, 'iri_logged_med': 9.37, 'iri_fresh_med': 11.8}
+hopper automation_test_track trip_2 {'km': 6.67, 'repeat_pct': np.float64(55.52), 'repeat_short_pct': np.float64(44.58), 'repeat_long_pct': np.float64(10.94), 'iri_logged': 12.19, 'iri_fresh': 15.77, 'iri_smoothed': 4.37, 'iri_logged_med': 9.02, 'iri_fresh_med': 14.54}
+hopper automation_test_track trip_3 {'km': 1.72, 'repeat_pct': np.float64(56.0), 'repeat_short_pct': np.float64(49.53), 'repeat_long_pct': np.float64(6.47), 'iri_logged': 12.63, 'iri_fresh': 12.1, 'iri_smoothed': 4.66, 'iri_logged_med': 6.27, 'iri_fresh_med': 6.51}
+hopper east_coast_usa trip_1 {'km': 8.51, 'repeat_pct': np.float64(57.01), 'repeat_short_pct': np.float64(52.96), 'repeat_long_pct': np.float64(4.05), 'iri_logged': 15.85, 'iri_fresh': 22.53, 'iri_smoothed': 5.72, 'iri_logged_med': 12.92, 'iri_fresh_med': 18.87}
+hopper east_coast_usa trip_2 {'km': 8.51, 'repeat_pct': np.float64(56.42), 'repeat_short_pct': np.float64(51.53), 'repeat_long_pct': np.float64(4.9), 'iri_logged': 14.06, 'iri_fresh': 18.86, 'iri_smoothed': 5.53, 'iri_logged_med': 10.26, 'iri_fresh_med': 15.99}
+hopper west_coast_usa trip_1 {'km': 6.62, 'repeat_pct': np.float64(64.55), 'repeat_short_pct': np.float64(62.63), 'repeat_long_pct': np.float64(1.92), 'iri_logged': 10.01, 'iri_fresh': 11.34, 'iri_smoothed': 3.22, 'iri_logged_med': 6.93, 'iri_fresh_med': 8.89}
+hopper west_coast_usa trip_2 {'km': 5.66, 'repeat_pct': np.float64(64.81), 'repeat_short_pct': np.float64(62.62), 'repeat_long_pct': np.float64(2.19), 'iri_logged': 10.25, 'iri_fresh': 11.82, 'iri_smoothed': 3.31, 'iri_logged_med': 8.48, 'iri_fresh_med': 9.95}
+sunburst2 automation_test_track trip_1 {'km': 9.35, 'repeat_pct': np.float64(57.24), 'repeat_short_pct': np.float64(46.91), 'repeat_long_pct': np.float64(10.33), 'iri_logged': 13.06, 'iri_fresh': 15.81, 'iri_smoothed': 5.04, 'iri_logged_med': 9.04, 'iri_fresh_med': 13.12}
+sunburst2 automation_test_track trip_2 {'km': 1.48, 'repeat_pct': np.float64(60.27), 'repeat_short_pct': np.float64(50.73), 'repeat_long_pct': np.float64(9.54), 'iri_logged': 7.35, 'iri_fresh': 7.84, 'iri_smoothed': 3.08, 'iri_logged_med': 3.52, 'iri_fresh_med': 5.89}
+sunburst2 east_coast_usa trip_1 {'km': 9.01, 'repeat_pct': np.float64(58.75), 'repeat_short_pct': np.float64(53.6), 'repeat_long_pct': np.float64(5.16), 'iri_logged': 14.33, 'iri_fresh': 18.53, 'iri_smoothed': 5.43, 'iri_logged_med': 12.43, 'iri_fresh_med': 15.8}
+sunburst2 east_coast_usa trip_2 {'km': 8.8, 'repeat_pct': np.float64(58.64), 'repeat_short_pct': np.float64(54.22), 'repeat_long_pct': np.float64(4.42), 'iri_logged': 15.71, 'iri_fresh': 20.27, 'iri_smoothed': 5.87, 'iri_logged_med': 12.7, 'iri_fresh_med': 17.76}
+sunburst2 west_coast_usa trip_1 {'km': 6.42, 'repeat_pct': np.float64(66.62), 'repeat_short_pct': np.float64(64.82), 'repeat_long_pct': np.float64(1.81), 'iri_logged': 9.72, 'iri_fresh': 10.79, 'iri_smoothed': 3.3, 'iri_logged_med': 7.11, 'iri_fresh_med': 8.79}
+sunburst2 west_coast_usa trip_2 {'km': 6.59, 'repeat_pct': np.float64(66.81), 'repeat_short_pct': np.float64(64.83), 'repeat_long_pct': np.float64(1.98), 'iri_logged': 9.46, 'iri_fresh': 10.33, 'iri_smoothed': 3.08, 'iri_logged_med': 8.06, 'iri_fresh_med': 9.2}
+vivace automation_test_track trip_1 {'km': 9.31, 'repeat_pct': np.float64(54.47), 'repeat_short_pct': np.float64(46.68), 'repeat_long_pct': np.float64(7.79), 'iri_logged': 11.89, 'iri_fresh': 14.75, 'iri_smoothed': 4.2, 'iri_logged_med': 9.58, 'iri_fresh_med': 12.98}
+vivace automation_test_track trip_2 {'km': 9.41, 'repeat_pct': np.float64(55.65), 'repeat_short_pct': np.float64(46.74), 'repeat_long_pct': np.float64(8.91), 'iri_logged': 12.39, 'iri_fresh': 15.98, 'iri_smoothed': 4.2, 'iri_logged_med': 11.34, 'iri_fresh_med': 14.57}
+vivace east_coast_usa trip_1 {'km': 8.85, 'repeat_pct': np.float64(58.14), 'repeat_short_pct': np.float64(53.65), 'repeat_long_pct': np.float64(4.49), 'iri_logged': 14.42, 'iri_fresh': 19.11, 'iri_smoothed': 5.51, 'iri_logged_med': 11.53, 'iri_fresh_med': 14.58}
+vivace east_coast_usa trip_2 {'km': 8.77, 'repeat_pct': np.float64(57.92), 'repeat_short_pct': np.float64(53.95), 'repeat_long_pct': np.float64(3.97), 'iri_logged': 14.47, 'iri_fresh': 18.75, 'iri_smoothed': 5.3, 'iri_logged_med': 10.87, 'iri_fresh_med': 16.37}
+vivace west_coast_usa trip_1 {'km': 6.52, 'repeat_pct': np.float64(68.93), 'repeat_short_pct': np.float64(66.37), 'repeat_long_pct': np.float64(2.56), 'iri_logged': 9.48, 'iri_fresh': 9.46, 'iri_smoothed': 3.19, 'iri_logged_med': 6.94, 'iri_fresh_med': 8.19}
+vivace west_coast_usa trip_2 {'km': 6.08, 'repeat_pct': np.float64(66.36), 'repeat_short_pct': np.float64(64.52), 'repeat_long_pct': np.float64(1.84), 'iri_logged': 9.7, 'iri_fresh': 10.82, 'iri_smoothed': 3.42, 'iri_logged_med': 7.2, 'iri_fresh_med': 8.74}
+P79 CPH1
+P79 CPH6
+P79 M3
+P79 M13
+{
+ "n_trips": 19,
+ "km": 137.675,
+ "repeat_pct_min": 54.15256913429873,
+ "repeat_pct_max": 68.93237638761269,
+ "repeat_pct_mean": 59.40634684257194,
+ "repeat_short_pct_mean": 53.91885668291365,
+ "repeat_long_pct_mean": 5.487490159658297,
+ "iri_logged_mean": 12.49898385738744,
+ "iri_fresh_mean": 15.59835970328712,
+ "iri_smoothed_mean": 4.509109610956706,
+ "short_wavelength_slope_share": {
+  "P79, motorway": 0.6984233426501583,
+  "P79, urban": 0.598240798578484,
+  "game engine, fresh readings": 0.6300039807800434,
+  "game engine, logged": 0.6632268557075135
+ }
+}

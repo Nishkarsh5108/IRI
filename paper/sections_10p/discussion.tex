@@ -1,0 +1,33 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\textbf{What simulated drives over measured profiles provide.}
+Ranking segments within a route turned out to be the easy part, which an untrained, speed-normalised vibration RMS does nearly as well as the best trained estimators.
+Simulation supplied the mapping from vibration to IRI up to a level that depended on two simulator choices, the sensor path, whose effect reached the estimator through the features carrying vibration above 10\,Hz, and the vehicle population; no variant was built to reproduce the absolute gain of this car's vibration path, and the reference simulator's matched level was a fortunate combination of these choices.
+
+\textbf{A blueprint for road agencies.}
+For a new car type the results suggest three steps.
+(i) Simulate the car over corridors whose profiles are already surveyed, with randomised vehicles and a sensor model; the ranking of segments will transfer.
+(ii) Collect about 5\,km of paired drives over profiled road; one pass per segment sufficed here.
+(iii) Train jointly on simulated and paired drives, which beat real-only training on average for every simulator variant and every $k$ we tested, though not on every route and draw; a level offset is slightly more accurate when the simulated level error is common to both road classes, which the paired drives reveal by class and a comparison of real and simulated spectra on the calibration roads anticipates (an association found after the fact).
+
+\textbf{How to evaluate.}
+Because a within-route Spearman correlation is unaffected by calibration, it cannot separate a trained estimator from an untrained statistic; IRI estimators should be judged on held-out routes by absolute error and level per road class.
+Segment errors are spatially correlated: 5\,km-block intervals of paired differences were \infWidthRatioMin--\infWidthRatioMax{} times as wide as segment-level ones, and route-level intervals with four routes include zero for most comparisons (Table~\ref{S-tab:s_inference}), so the supported differences describe these four routes, not a population of routes, and benchmarks on road data should resample spatial blocks or routes, not segments.
+Smooth roads are driven fast, so estimators trained on real cars can use speed as a cue for low roughness, consistent with their over-correction on a fixed road; we recommend reporting such fixed-road elasticities from repeated passes, with the within-pass speed variability as a control, instead of speed sweeps in simulation alone.
+All errors are relative to one P79 survey (a second device: Table~\ref{S-tab:s_aran}).
+
+\section{Limitations}
+\label{sec:limitations}
+\emph{External validity.}
+LiRA-CD contains one car model with one type of telematics unit on four routes in one city region; road class and route are confounded, and with four routes no statement about route-to-route variation is inferential.
+Whether the simulated mapping transfers up to a level, and how much paired data the level needs, for other cars, sensors, speeds and road networks is unknown.
+Transfer to other vehicles and to phones in holders was examined only in simulation (Supplement~\ref{S-sec:s_controlled}).
+\emph{Exploratory analyses.}
+Except for the comparison of the reference simulator with real training, all real-data results come from analyses designed after the test routes had been evaluated; they generate hypotheses rather than confirm them.
+\emph{Combination methods.}
+We compared three ways of combining simulated and real data with one learner and fixed settings; network fine-tuning or domain adaptation might rank differently.
+\emph{Simulator.}
+The simulator is a linear half-car without roll or body flexibility, driven by the mean of the two wheel-path profiles, with parameter ranges for sensitivity rather than a calibrated fleet; its vibration differs from the real car's at 2--5\,Hz and above 10\,Hz and in its speed scaling.
+\emph{Other.}
+M7 is not a reproduction of~\cite{skar2024inversion} and the CNN was not tuned; the reference surveys preceded the car passes by two to fifteen months, segments are 100\,m long, and we did not train on real data from several cities.

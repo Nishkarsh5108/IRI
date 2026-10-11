@@ -334,6 +334,28 @@ def main():
         put("mtMwThirteen" + nm + "Mae", g.mae, "{:.3f}"); put("mtMwThirteen" + nm + "Seg", g.n_seg, "{:.0f}")
     put("mtNewSeg", int(new[new.model.str.startswith("M7 quarter")].n_seg.sum()), "{:,.0f}")
 
+    # ---------------- game-engine elevation diagnostic (experiments/v3/beamng_profile_artifacts.py; 6-page revision)
+    GA = pd.read_csv(os.path.join(V3, "beamng_profile_artifacts.csv"))
+    GS = json.load(open(os.path.join(V3, "beamng_profile_summary.json"), encoding="utf-8"))
+    put("geTrips", len(GA), "{:.0f}"); put("geKm", GA.km.sum(), "{:.0f}")
+    put("geRepeatMin", GA.repeat_pct.min(), "{:.0f}"); put("geRepeatMax", GA.repeat_pct.max(), "{:.0f}")
+    put("geRepeatMean", GS["repeat_pct_mean"], "{:.0f}")
+    put("geIriLogged", GS["iri_logged_mean"], "{:.1f}"); put("geIriFresh", GS["iri_fresh_mean"], "{:.1f}")
+    put("geIriSmoothed", GS["iri_smoothed_mean"], "{:.1f}")
+    PP = pd.read_csv(os.path.join(V3, "profile_psd.csv"))
+
+    def band_power(src, a, b):                   # displacement power between wavelengths a > b (m)
+        g = PP[PP.source == src]
+        n, p = g.n_cyc_per_m.to_numpy(), g.psd_m2_per_cyc_m.to_numpy()
+        sel = (n >= 1 / a) & (n <= 1 / b)
+        return float(np.trapezoid(p[sel], n[sel]))
+    long_b, short_b = [(30, 10)], [(5, 2), (2, 1), (1, 0.5)]
+    for ref, nm in (("P79, urban", "Urban"), ("P79, motorway", "Motorway")):
+        rl = [band_power("game engine, logged", a, b) / band_power(ref, a, b) for a, b in long_b]
+        rs = [band_power("game engine, logged", a, b) / band_power(ref, a, b) for a, b in short_b]
+        put("gePsd" + nm + "Long", rl[0], "{:.0f}")
+        put("gePsd" + nm + "ShortMin", min(rs), "{:.0f}"); put("gePsd" + nm + "ShortMax", max(rs), "{:.0f}")
+
     # ---------------- write
     bad = [k for k in M if not re.fullmatch(r"[A-Za-z]+", k)]
     assert not bad, bad

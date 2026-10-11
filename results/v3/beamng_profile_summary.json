@@ -1,0 +1,18 @@
+{
+ "n_trips": 19,
+ "km": 137.675,
+ "repeat_pct_min": 54.15256913429873,
+ "repeat_pct_max": 68.93237638761269,
+ "repeat_pct_mean": 59.40634684257194,
+ "repeat_short_pct_mean": 53.91885668291365,
+ "repeat_long_pct_mean": 5.487490159658297,
+ "iri_logged_mean": 12.49898385738744,
+ "iri_fresh_mean": 15.59835970328712,
+ "iri_smoothed_mean": 4.509109610956706,
+ "short_wavelength_slope_share": {
+  "P79, motorway": 0.6984233426501583,
+  "P79, urban": 0.598240798578484,
+  "game engine, fresh readings": 0.6300039807800434,
+  "game engine, logged": 0.6632268557075135
+ }
+}

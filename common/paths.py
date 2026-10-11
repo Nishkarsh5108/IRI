@@ -4,7 +4,7 @@ import os
 RESCUE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = os.path.dirname(RESCUE)
 
-# Legacy (rejected-paper) assets - read only
+# Legacy (rejected-paper) assets — read only
 BEAMNG_RAW = os.path.join(REPO, "ml_model_work", "data", "simulation", "data", "IRI_new_experiments")
 LEGACY_LABEL_CODE = os.path.join(REPO, "ml_model", "iri_compliant")
 LEGACY_V2_NPZ = os.path.join(REPO, "ml_model", "iri_v2", "output", "iri_v2_data.npz")

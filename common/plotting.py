@@ -77,7 +77,7 @@ def _agree(x, y):
 
 def iri_validation_figure(scatter: dict, base: str):
     panels = [("canonical_dx0.10", "(a) This implementation vs. P79", PALETTE[0], "P79-reported IRI, 100 m (m/km)", "upper left"),
-              ("legacy_mesh_corrected", "(b) Legacy label pipeline vs. P79", PALETTE[1], "P79-reported IRI, 100 m (m/km)", "upper left"),
+              ("legacy_mesh_corrected", "(b) Mesh-smoothing label code vs. P79", PALETTE[1], "P79-reported IRI, 100 m (m/km)", "upper left"),
               ("ARAN_vs_P79", "(c) ARAN9000 vs. P79 (other device)", PALETTE[2], "P79 IRI from profile, 100 m (m/km)", "lower right")]
     fig, axes = plt.subplots(1, 3, figsize=(DBL_W, 2.35))
     allv = np.concatenate([np.concatenate(v) for v in scatter.values()])

@@ -54,7 +54,7 @@ def t_variants():
     cal.columns = ["mean", "lo", "hi"]
     PS = r3("pooled_summary.csv").set_index(["vid", "k_km"])
     L_ = [r"\begin{table*}[t]", r"\centering",
-          r"\caption{Simulator variants: LightGBM trained only on simulated drives (zero-shot), tested on the held-out real routes. Pooled segment MAE and bias in m/km; level: mean log(prediction/label) over the segments of a route, averaged over the two routes of a road class; within-route Spearman $\rho$. Right: pooled MAE with 5 or 20\,km of paired drives used for a level offset (2.5--97.5\,\% range over the 20 draws in brackets) or for joint training; means over 20 draws. Real-only LightGBM on the same drives: \vbRealOnlyFive\,m/km (5\,km), \vbRealOnlyTwenty\,m/km (20\,km). Class E except V0. Scale $b$ and speed elasticities: Table~\ref{S-tab:variants_s_gbm}.}",
+          r"\caption{Simulator variants: LightGBM trained only on simulated drives (zero-shot), tested on the held-out real routes. Pooled segment MAE and bias in m/km; level: mean log(prediction/label) over the segments of a route, averaged over the two routes of a road class; within-route Spearman $\rho$. Right: pooled MAE with 5 or 20\,km of paired drives used for a level offset (2.5--97.5\,\% range over the 20 draws in brackets) or for joint training; means over 20 draws. Real-only LightGBM on the same drives: \vbRealOnlyFive\,m/km (5\,km), \vbRealOnlyTwenty\,m/km (20\,km). Scale $b$ and speed elasticities: \TabVariantsGbm.}",
           r"\label{tab:variants}", r"\setlength{\tabcolsep}{3.2pt}", r"\scriptsize", r"\begin{tabular}{@{}lcccccccccc@{}}", r"\toprule",
           r"& \multicolumn{5}{c}{Zero-shot} & \multicolumn{2}{c}{+ level offset} & \multicolumn{2}{c}{+ joint training} \\ \cmidrule(lr){2-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}",
           r"Simulator variant & MAE & bias & level urban & level motorway & $\rho$ & 5\,km & 20\,km & 5\,km & 20\,km \\", r"\midrule"]
@@ -258,7 +258,7 @@ def t_speed_rob():
 def t_relerr_v1fewshot():
     RE = pd.read_csv(os.path.join(V3, "relative_errors.csv"))
     L_ = [r"\begin{table}[!htbp]", r"\centering",
-          r"\caption{Relative errors on real cars: segment MAE over the two held-out routes of each road class divided by their mean IRI (\%; Table~\ref{M-tab:real} estimators, leave-one-route-out).}",
+          r"\caption{Relative errors on real cars: segment MAE over the two held-out routes of each road class divided by their mean IRI (\%; estimators of \TabReal, leave-one-route-out).}",
           r"\label{tab:s_relerr}", r"\footnotesize", r"\begin{tabular}{@{}lcc@{}}", r"\toprule", r"Estimator & urban & motorway \\", r"\midrule"]
     for _, r in RE.iterrows():
         L_.append(rf"{r.estimator} & {r.rel_urban:.0f} & {r.rel_motorway:.0f} \\")
@@ -267,7 +267,7 @@ def t_relerr_v1fewshot():
     F = pd.read_csv(os.path.join(RESULTS, "lira", "fewshot_pooled_summary.csv"))
     ks = ["1", "2", "5", "10", "20", "all"]
     L_ = [r"\begin{table}[!htbp]", r"\centering",
-          r"\caption{First-round value-of-simulation arms as specified in our first protocol and run in the first analysis round (5 draws per $k$, the V10 simulation set, pooled segment MAE in m/km, mean over draws; the CNNs are seed-averaged and diverge on some draws at small $k$). Shown for completeness; the main analysis uses 20 draws and every simulator variant.}",
+          r"\caption{Further combinations of simulation and paired drives, including the 1D-CNN (5 draws per $k$, simulation set V10 with measured and synthetic profiles; pooled segment MAE in m/km, mean over draws). Real-only: trained on the paired drives alone; sim index + real intercept: vibration index fitted in simulation with a level offset; sim+real LightGBM: joint training; sim-pretrained 1D-CNN: fine-tuned on the paired drives (three seeds; it diverges on some draws at small $k$).}",
           r"\label{tab:s_v1_fewshot}", r"\setlength{\tabcolsep}{3pt}", r"\footnotesize", r"\begin{tabular}{@{}l" + "c" * len(ks) + r"@{}}", r"\toprule",
           r"Arm & " + " & ".join(ks) + r" \\", r"\midrule"]
     for model, g in F.groupby("model", sort=False):
@@ -286,9 +286,48 @@ def t_relerr_v1fewshot():
     write("v3s_v1_fewshot.tex", "\n".join(L_) + "\n")
 
 
+def t_bench():
+    """Main-paper Table I of the 6-page version: held-out route performance of untrained, real-trained and
+    simulation-trained estimators (single column)."""
+    E = r2("summary_real_estimators.csv").set_index("estimator")
+    S = r2("summary_variants.csv"); S = S[S.model == "GBM"].set_index("vid")
+    rk = r2("ranking_untrained.csv").groupby("statistic").rho.mean()
+    meas = S.loc[MEAS]
+
+    def row(name, mae, rho, bias):
+        return rf"{name} & {mae} & {rho} & {bias} \\"
+
+    def e(est, name):
+        r = E.loc[est]
+        return row(name, f2(r.mae_within), f2(r.rho_within), f2(r.bias, 2, True))
+
+    def sv(vid, name):
+        r = S.loc[vid]
+        return row(name, f2(r.mae_within_mean), f2(r.rho_within_mean), f2(r.bias, 2, True))
+    L_ = [r"\begin{table}[t]", r"\centering",
+          r"\caption{Held-out route performance on LiRA-CD (100\,m segments). MAE and Spearman $\rho$ within routes (mean of the four held-out routes), bias pooled over all segments, in m/km. Simulation-trained models use no real labels; game engine: labels from the ray-cast mesh elevation after smoothing (Section~\ref{sec:gameengine}).}",
+          r"\label{tab:bench}", r"\setlength{\tabcolsep}{4pt}", r"\footnotesize", r"\begin{tabular}{@{}lccc@{}}", r"\toprule",
+          r"Estimator & MAE & $\rho$ & Bias \\", r"\midrule",
+          r"\multicolumn{4}{@{}l}{\emph{Without vibration or without training}} \\",
+          e("M0b map-only road-class prior", "Road-class prior (map)").replace(r" & -- \\", r" \\"),
+          e("M1 speed only", "LightGBM, speed only"),
+          row(r"RMS$/v^{0.5}$, untrained", "--", f2(rk["RMS/v^0.5"]), "--"),
+          r"\multicolumn{4}{@{}l}{\emph{Trained on real drives of the three other routes}} \\",
+          e("M2c vibration index", "Vibration index"), e("M7 quarter-car inversion", "Quarter-car inversion"),
+          e("M5 1D-CNN", "1D-CNN"), e("M3 LightGBM", "LightGBM"),
+          r"\multicolumn{4}{@{}l}{\emph{LightGBM trained on simulation only}} \\",
+          sv("V0", "Measured profiles, V0"),
+          row(r"Measured profiles, V0--V8", rf"{f2(meas.mae_within_mean.min())}--{f2(meas.mae_within_mean.max())}",
+              rf"{f2(meas.rho_within_mean.min())}--{f2(meas.rho_within_mean.max())}",
+              rf"{f2(meas.bias.min(), 2, True)} to {f2(meas.bias.max(), 2, True)}"),
+          sv("V9", "Synthetic profiles, V9"), sv("B_corr", "Game engine"),
+          r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+    write("v3_bench.tex", "\n".join(L_) + "\n")
+
+
 def main():
     t_variants(); t_value(); t_value_more(); t_calib_uncertainty(); t_pass_density(); t_band(); t_rank(); t_speed_rob()
-    t_relerr_v1fewshot()
+    t_relerr_v1fewshot(); t_bench()
     print("tables written:", sorted(f for f in os.listdir(TABLES) if f.startswith("v3")))
 
 
