@@ -1,0 +1,16 @@
+=== audit_raw
+exit=0 -> outputs/audit_raw.txt
+=== audit_overlap_jitter
+exit=0 -> outputs/audit_overlap_jitter.txt
+=== audit_labels
+exit=0 -> outputs/audit_labels.txt
+=== audit_imu_label
+exit=0 -> outputs/audit_imu_label.txt
+=== audit_eval
+exit=0 -> outputs/audit_eval.txt
+=== audit_filter
+exit=0 -> outputs/audit_filter.txt
+=== audit_pvs
+exit=0 -> outputs/audit_pvs.txt
+=== audit_misc
+exit=0 -> outputs/audit_misc.txt

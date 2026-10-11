@@ -1,0 +1,18 @@
+                    estimator                      source  scope  d_CPH1  d_CPH6   d_M3  d_M13  max_abs
+        real-trained LightGBM summary_real_estimators.csv      1   0.042   0.044 -0.020 -0.023    0.044
+                          MLP summary_real_estimators.csv      1   0.042   0.043 -0.032 -0.024    0.043
+                       1D-CNN summary_real_estimators.csv      1   0.027  -0.006 -0.034 -0.035    0.035
+     M7 quarter-car inversion summary_real_estimators.csv      1   0.022   0.030 -0.026 -0.019    0.030
+          M2c vibration index summary_real_estimators.csv      0  -0.099  -0.054 -0.061 -0.038    0.099
+LightGBM without speed inputs summary_real_estimators.csv      0  -0.041   0.007 -0.055 -0.176    0.176
+                M1 speed only summary_real_estimators.csv      0  -0.361  -0.373 -0.723 -0.291    0.723
+      V0 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.038   0.017  0.007 -0.015    0.038
+      V1 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.021   0.002  0.004 -0.007    0.021
+      V2 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.038   0.022 -0.005 -0.019    0.038
+      V3 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.026   0.013  0.008 -0.006    0.026
+      V4 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.036   0.025 -0.005 -0.032    0.036
+      V5 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.026  -0.016  0.005 -0.022    0.026
+      V6 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.031   0.014  0.003 -0.021    0.031
+      V7 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.037   0.023  0.013 -0.025    0.037
+      V8 LightGBM (zero-shot)       variants_zeroshot.csv      1   0.026   0.021  0.009 -0.000    0.026
+max |d| in scope: 0.0443

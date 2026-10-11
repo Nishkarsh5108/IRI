@@ -1,0 +1,58 @@
+real-only done (68s)
+V0 CPH1 done (110s)
+V0 CPH6 done (154s)
+V0 M3 done (194s)
+V0 M13 done (237s)
+V1 CPH1 done (261s)
+V1 CPH6 done (284s)
+V1 M3 done (306s)
+V1 M13 done (333s)
+V2 CPH1 done (359s)
+V2 CPH6 done (384s)
+V2 M3 done (408s)
+V2 M13 done (432s)
+V3 CPH1 done (468s)
+V3 CPH6 done (502s)
+V3 M3 done (544s)
+V3 M13 done (583s)
+V4 CPH1 done (620s)
+V4 CPH6 done (652s)
+V4 M3 done (687s)
+V4 M13 done (727s)
+V5 CPH1 done (761s)
+V5 CPH6 done (793s)
+V5 M3 done (823s)
+V5 M13 done (855s)
+V6 CPH1 done (884s)
+V6 CPH6 done (914s)
+V6 M3 done (943s)
+V6 M13 done (975s)
+V7 CPH1 done (996s)
+V7 CPH6 done (1016s)
+V7 M3 done (1038s)
+V7 M13 done (1060s)
+V8 CPH1 done (1082s)
+V8 CPH6 done (1102s)
+V8 M3 done (1123s)
+V8 M13 done (1145s)
+m                        1      2      5
+arm             vid                     
+real_only       -    0.926  0.753  0.692
+sim_all_cal     V0   0.426  0.428  0.427
+                V1   0.512  0.518  0.521
+                V2   0.425  0.424  0.425
+                V3   0.526  0.527  0.531
+                V4   0.437  0.435  0.437
+                V5   0.545  0.549  0.554
+                V6   0.449  0.446  0.448
+                V7   0.433  0.432  0.434
+                V8   0.448  0.450  0.451
+sim_real_pooled V0   0.444  0.449  0.451
+                V1   0.481  0.475  0.471
+                V2   0.439  0.443  0.448
+                V3   0.489  0.485  0.478
+                V4   0.486  0.477  0.471
+                V5   0.484  0.479  0.469
+                V6   0.455  0.453  0.455
+                V7   0.455  0.460  0.457
+                V8   0.462  0.463  0.458
