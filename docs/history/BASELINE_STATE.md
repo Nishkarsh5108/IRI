@@ -7,7 +7,7 @@ Snapshot taken 2026-10-02. Nothing in `ml_model/`, `ml_model_work/`, `nish_conf_
 - Git HEAD: `4e3b3d6f384b9b4839111797971e9fcdcc6084fe` ("updated IRI conference paper"), branch `main`, remote `https://github.com/ashunarayan/ARM.git`.
 - Working tree at snapshot: 133 uncommitted entries (modified `ml_model/iri_v3/*`, `ml_model/baseline/*`, `nish_conf_paper/main.tex`, images; untracked `ml_model/baseline/outputs/all_model_predictions_seed_4*.npz`). The rescue does not commit anything.
 - Submitted paper: `nish_conf_paper/main.tex` (compiled `main.pdf`, 2026-07-31). Desk-rejected at IEEE ICONAT 2026 (Paper 3979); decision text in `nish_conf_paper/rejection.txt` (generic 9-point template).
-- Python environments used to reproduce legacy results: `C:/Users/nishk/anaconda3/envs/tf` (TF 2.10, CPU only: CUDA DLLs absent). New work: `C:/Users/nishk/anaconda3/envs/torch_gpu` (PyTorch 2.7.1+cu118, RTX 4050 6 GB; numba is unusable there because NumPy 2.4.4 was installed in April 2026 — pre-existing).
+- Python environments used to reproduce legacy results: `C:/Users/nishk/anaconda3/envs/tf` (TF 2.10, CPU only: CUDA DLLs absent). New work: `C:/Users/nishk/anaconda3/envs/torch_gpu` (PyTorch 2.7.1+cu118, RTX 4050 6 GB; numba is unusable there because NumPy 2.4.4 was installed in April 2026 - pre-existing).
 - No requirements/environment file existed in the repository.
 
 ## 2. Claims made by the rejected paper (verbatim intent)

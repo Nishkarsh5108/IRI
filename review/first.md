@@ -120,8 +120,8 @@
 | Mixture (paper's primary)                          | 0.439           | +0.01         | 0.197        |
 | **Phone-like half only**                     | **0.409** | −0.09        | 0.139        |
 | Telematics half only                               | 0.678           | +0.43         | 0.558        |
-| (paper, post-hoc) Single matched telematics sensor | 0.687           | +0.40         | —           |
-| (paper) Ideal sensor / fixed vehicle               | 0.666 / 0.626   | +0.40 / +0.40 | —           |
+| (paper, post-hoc) Single matched telematics sensor | 0.687           | +0.40         | -           |
+| (paper) Ideal sensor / fixed vehicle               | 0.666 / 0.626   | +0.40 / +0.40 | -           |
 
 On matched segments at 60–100 km/h, simulated telematics vibration is **×1.40 below** real and the phone model is ×1.12 below. In the 10–15 Hz band the gaps are 1.07 vs 0.53 in log units.
 
@@ -557,8 +557,8 @@ I didn't change any repository file. I did save the verified findings to memory 
 | Mixture (paper's primary)                          | 0.439           | +0.01         | 0.197        |
 | **Phone-like half only**                     | **0.409** | −0.09        | 0.139        |
 | Telematics half only                               | 0.678           | +0.43         | 0.558        |
-| (paper, post-hoc) Single matched telematics sensor | 0.687           | +0.40         | —           |
-| (paper) Ideal sensor / fixed vehicle               | 0.666 / 0.626   | +0.40 / +0.40 | —           |
+| (paper, post-hoc) Single matched telematics sensor | 0.687           | +0.40         | -           |
+| (paper) Ideal sensor / fixed vehicle               | 0.666 / 0.626   | +0.40 / +0.40 | -           |
 
 On matched segments at 60–100 km/h, simulated telematics vibration is **×1.40 below** real and the phone model is ×1.12 below. In the 10–15 Hz band the gaps are 1.07 vs 0.53 in log units.
 

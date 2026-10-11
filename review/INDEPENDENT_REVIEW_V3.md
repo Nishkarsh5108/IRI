@@ -184,7 +184,7 @@ I retrained zero-shot LightGBM for V0–V8 with the paper's loaders and first co
 
 | Feature set | Pooled zero-shot bias across V0–V8 (m/km) | Reading |
 |---|---|---|
-| all 13 features (paper) | −0.09 to +0.43 (spread 0.52) | — |
+| all 13 features (paper) | −0.09 to +0.43 (spread 0.52) | - |
 | all except the 10–15 Hz band | −0.07 to +0.44 (spread 0.51) | no change |
 | only content below 10 Hz (speed, speed CV, bands 0.5–2, 2–5, 5–10 Hz) | eight sensor variants −0.19 to −0.05 (spread 0.14); V4 +0.28 | sensor-variant differences collapse; V4 does not |
 
@@ -383,14 +383,14 @@ Bibliographic details below were checked against Crossref, publisher or reposito
 | **Ngwangwa et al. 2014**, *J. Terramechanics* 53:1–18, [doi:10.1016/j.jterra.2014.03.002](https://doi.org/10.1016/j.jterra.2014.03.002) | Simulation-trained NARX network applied to experimental data | Land Rover Defender 110 over discrete obstacles and Belgian paving | Simulation-trained, tested on a real vehicle (profile reconstruction, roughness classes) | Only the 2010 numerical study is cited; add 2014 | No |
 | **Wu et al. 2023**, *Int. J. Pavement Eng.* 25(1):2287688, [doi:10.1080/10298436.2023.2287688](https://doi.org/10.1080/10298436.2023.2287688) | Full-car model updated from a few impact tests; linear IRI–RMS relation derived by simulation over random profiles | Real roads in Shanghai; mean IRI difference 0.5 m/km per 100 m | An alternative way to "calibrate the level": calibrate the vehicle model, not the estimator | **No; add** | No (different data); discuss qualitatively |
 | Bajic et al. 2021, [arXiv:2107.01199](https://arxiv.org/abs/2107.01199) | Classical ML regressors on time-domain and statistical features | GreenMobility Renault Zoe, AutoPi at 50 Hz; M3 (52.6 km, both lanes); Greenwood-profiler IRI per 10 m averaged over sliding 100 m windows (10 m step); holdout = last 20% (1,006 segments); best MAE 0.16–0.17, RMSE 0.21, R² 0.64–0.66 (MLP); mean baseline MAE 0.33 | ML on the same fleet with a within-road split | Yes; accurate. Anchor in Table S8 appropriately caveated. Bajic et al. name a Greenwood profiler and the LiRA-CD article does not name the P79's maker, so "different profiler" is unverified: write "different reference survey and processing". | Approximate anchor only (already done) |
-| Skar et al. 2023, LiRA-CD, *Data in Brief* 49:109426 ([PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC10375556/)) | The dataset | P79 surveys 10-09-2020 (CPH1, M3, M13) and 04-06-2020 (CPH6); car data 2020–2021; AutoPi "fixed to the frame in the middle of the GM car close to the front axle"; also a platoon test (39 passes over 1.5 km of CPH1) and CAN signals (longitudinal acceleration, wheel speeds, tyre pressures) | The data source | Yes; cite the mounting description and survey dates | — |
+| Skar et al. 2023, LiRA-CD, *Data in Brief* 49:109426 ([PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC10375556/)) | The dataset | P79 surveys 10-09-2020 (CPH1, M3, M13) and 04-06-2020 (CPH6); car data 2020–2021; AutoPi "fixed to the frame in the middle of the GM car close to the front axle"; also a platoon test (39 passes over 1.5 km of CPH1) and CAN signals (longitudinal acceleration, wheel speeds, tyre pressures) | The data source | Yes; cite the mounting description and survey dates | - |
 | Agebjär et al. 2025, FUSION, [doi:10.23919/FUSION65864.2025.11123970](https://doi.org/10.23919/FUSION65864.2025.11123970) | System identification plus Kalman-filter profile reconstruction | Production car, real data | Model-based alternative | Yes; accurate | No |
 | Xing et al. 2025, *Machines* 13(5):391, [doi:10.3390/machines13050391](https://doi.org/10.3390/machines13050391) | Speed-adaptive roughness classification from the unsprung-mass response | Quarter-vehicle simulation plus a real-vehicle test | Simulation plus real test, roughness classes | Yes; accurate | No |
-| Zhang, Sun, Bridgelall & Sun 2018, *J. Transp. Eng. B* 144(4):04018043, [doi:10.1061/JPEODX.0000074](https://doi.org/10.1061/JPEODX.0000074) | ML on simulated connected-vehicle signals; a convolution suppresses vehicle and speed effects; IRI classes | Simulation only | Earlier "learning from simulated responses" | No; optional | — |
-| Wang, Burrow & Ghataora 2020, *J. Infrastruct. Syst.* 26(3):04020020, [doi:10.1061/(ASCE)IS.1943-555X.0000558](https://doi.org/10.1061/(ASCE)IS.1943-555X.0000558) | Simulation study of factors (vehicle type, driving style) affecting smartphone roughness measurement | Simulation | Context for vehicle and sensor sensitivity | No; optional | — |
+| Zhang, Sun, Bridgelall & Sun 2018, *J. Transp. Eng. B* 144(4):04018043, [doi:10.1061/JPEODX.0000074](https://doi.org/10.1061/JPEODX.0000074) | ML on simulated connected-vehicle signals; a convolution suppresses vehicle and speed effects; IRI classes | Simulation only | Earlier "learning from simulated responses" | No; optional | - |
+| Wang, Burrow & Ghataora 2020, *J. Infrastruct. Syst.* 26(3):04020020, [doi:10.1061/(ASCE)IS.1943-555X.0000558](https://doi.org/10.1061/(ASCE)IS.1943-555X.0000558) | Simulation study of factors (vehicle type, driving style) affecting smartphone roughness measurement | Simulation | Context for vehicle and sensor sensitivity | No; optional | - |
 | Shangguan et al. 2025, *J. Comput. Civ. Eng.* 39(6):04025099, [doi:10.1061/JCCEE5.CPENG-6782](https://doi.org/10.1061/JCCEE5.CPENG-6782) | VMD plus CNN predicting the road profile from connected-car acceleration; IRI computed from the predicted profile | **Data source not verified here** | If it uses LiRA-CD, related work on the same data | No; check the full text, then decide | Possibly, if routes and labels match |
-| Nguyen, Lechner & Wong 2019, *Eur. Transp. Res. Rev.*, [doi:10.1186/s12544-019-0380-6](https://doi.org/10.1186/s12544-019-0380-6) | Review of response-based methods | About 130 documents | Survey reference | No; optional | — |
-| Peng et al. 2018, ICRA, [doi:10.1109/ICRA.2018.8460528](https://doi.org/10.1109/ICRA.2018.8460528); Chebotar et al. 2019 ("SimOpt"), ICRA, [arXiv:1810.05687](https://arxiv.org/abs/1810.05687) | Dynamics randomisation; adapting the distribution of simulation parameters from a few real roll-outs | Robotics | Framing: the paper's spectral check and k km calibration are forms of real-data-informed simulation adaptation | Only Tobin et al. 2017 is cited; adding SimOpt is optional but sharpens the framing | — |
+| Nguyen, Lechner & Wong 2019, *Eur. Transp. Res. Rev.*, [doi:10.1186/s12544-019-0380-6](https://doi.org/10.1186/s12544-019-0380-6) | Review of response-based methods | About 130 documents | Survey reference | No; optional | - |
+| Peng et al. 2018, ICRA, [doi:10.1109/ICRA.2018.8460528](https://doi.org/10.1109/ICRA.2018.8460528); Chebotar et al. 2019 ("SimOpt"), ICRA, [arXiv:1810.05687](https://arxiv.org/abs/1810.05687) | Dynamics randomisation; adapting the distribution of simulation parameters from a few real roll-outs | Robotics | Framing: the paper's spectral check and k km calibration are forms of real-data-informed simulation adaptation | Only Tobin et al. 2017 is cited; adding SimOpt is optional but sharpens the framing | - |
 
 **Classifying the gaps.**
 - *Missing citations.* Essential: Nitsche 2014, Ngwangwa 2014, Wu 2023, Jeong & Jo 2024. Optional: Zhang 2018, Wang 2020, Chebotar 2019.
@@ -553,8 +553,8 @@ None of these would change a conclusion in proportion to its cost.
 
 | # | Claim (location) | Status | Evidence | Required change |
 |---|---|---|---|---|
-| 1 | Real-trained gradient boosting reaches within-route MAE 0.39 m/km (Abstract, V-A) | Supported | `summary_real_estimators.csv` (0.3950) | — |
-| 2 | Simulation-trained model ranks within routes as well under each of nine models (ρ 0.82–0.84 vs 0.83) (Abstract, V-B) | Supported (route averages) | `summary_variants.csv` | — |
+| 1 | Real-trained gradient boosting reaches within-route MAE 0.39 m/km (Abstract, V-A) | Supported | `summary_real_estimators.csv` (0.3950) | - |
+| 2 | Simulation-trained model ranks within routes as well under each of nine models (ρ 0.82–0.84 vs 0.83) (Abstract, V-B) | Supported (route averages) | `summary_variants.csv` | - |
 | 3 | An untrained RMS/v^0.5 ranks as well (0.82); "ranking does not discriminate" (Abstract, V-B, Discussion, Conclusion) | Partially supported | Mean Δρ +0.011 [+0.004, +0.020]: +0.04 on both urban routes, −0.02 on both motorways, every interval excludes 0 (`c3`) | "within 0.05 on every route"; report the paired Δρ |
 | 4 | Zero-shot bias ranges from −0.09 to +0.43 m/km (Abstract) | Supported | `summary_variants.csv` | Add the log level per class |
 | 5 | V0 matched the level only because half its passes carried a phone-holder resonance (Abstract, Intro, Discussion) | Not supported as worded | V4: same sensor mixture, bias +0.40 | Name the vehicle population as a second necessary ingredient |
@@ -567,15 +567,15 @@ None of these would change a conclusion in proportion to its cost.
 | 12 | Contribution (ii): factorial and spectra "locate the level error" (Intro) | Partially supported | Associational; misses the vehicle effect | "associate, and test by band-limiting" |
 | 13 | Contribution (iii): the paired data simulation replaces, "for every simulator variant" (Intro) | Partially supported | Depends on the method (D1) | Name the methods |
 | 14 | M7 ranks as well but with larger error (+0.081 [+0.043, +0.115]); its output calibration made it worse (V-A) | Supported | M13 evaluated on HH only (119 of 228 segments); negligible effect (`c5`) | Caption it, or fix (P2.4) |
-| 15 | Vehicle overlap did not measurably favour real-trained estimators (V-A) | Supported (three folds) | Table S7 | — |
-| 16 | LightGBM and MLP differ negligibly; the CNN is worse, almost entirely on CPH1 (V-A) | Supported | Tables I, S4, S5 | — |
-| 17 | Equal-budget statements: 1–2 km; variant dependence from 5 km; V4's gap closed by an offset (V-D) | Supported | Table S14 | — |
+| 15 | Vehicle overlap did not measurably favour real-trained estimators (V-A) | Supported (three folds) | Table S7 | - |
+| 16 | LightGBM and MLP differ negligibly; the CNN is worse, almost entirely on CPH1 (V-A) | Supported | Tables I, S4, S5 | - |
+| 17 | Equal-budget statements: 1–2 km; variant dependence from 5 km; V4's gap closed by an offset (V-D) | Supported | Table S14 | - |
 | 18 | Real-trained learned estimators over-correct for speed; V0 over-corrects less on urban roads (paired +0.09 [+0.06, +0.12]) (V-E) | Supported and robust | `c6` | Add the robustness rows |
-| 19 | Unseen-vehicle penalty of +70, +16 and +6% (V-F) | Supported (class S) | `vehicle_sweep.csv` | — |
+| 19 | Unseen-vehicle penalty of +70, +16 and +6% (V-F) | Supported (class S) | `vehicle_sweep.csv` | - |
 | 20 | V0's zero-shot accuracy is a fortunate match, not a property of randomising over sensors (Discussion) | Supported but incomplete | V4 | Add the vehicle population |
 | 21 | Two-step recipe for road agencies (Discussion) | Partially supported | D1, D2 | Include joint training; "above 10 Hz"; label as post hoc |
-| 22 | 5 km block intervals are 1.9–2.7 times as wide; a segment bootstrap would have declared V0 worse (Discussion) | Supported | `inference_blocks.csv` | — |
-| 23 | ARAN agrees with the P79 in ranking and median level but disagrees on a few urban segments (Discussion) | Supported | Table S11 | — |
+| 22 | 5 km block intervals are 1.9–2.7 times as wide; a segment bootstrap would have declared V0 worse (Discussion) | Supported | `inference_blocks.csv` | - |
+| 23 | ARAN agrees with the P79 in ranking and median level but disagrees on a few urban segments (Discussion) | Supported | Table S11 | - |
 | 24 | The simulated level depended on the simulated vibration at 10–15 Hz (Conclusion) | Partially supported | `c1`, `c8` | "above 10 Hz, and on the vehicle population" |
 | 25 | With 10 km or more of paired drives, the advantage depended on the variant (Conclusion) | Requires qualification | D1 | Name the method |
 
